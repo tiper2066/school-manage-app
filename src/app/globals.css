@@ -1,1 +1,10 @@
 @import 'tailwindcss';
+
+@theme {
+    --color-lamaSky: #c3ebfa; /* 하늘색 */
+    --color-lamaSkyLight: #edf9fd; /* 밝은 하늘색 */
+    --color-lamaPurple: #cfcfff; /* 밝은 보라색 */
+    --color-lamaPurpleLight: #f1f0ff; /* 아주 밝은 보라색 */
+    --color-lamaYellow: #fae27c; /* 노랑 */
+    --color-lamaYellowLight: #fefce8; /* 밝은 노랑 */
+}
