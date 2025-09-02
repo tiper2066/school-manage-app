@@ -8,3 +8,19 @@
     --color-lamaYellow: #fae27c; /* 노랑 */
     --color-lamaYellowLight: #fefce8; /* 밝은 노랑 */
 }
+
+/* ================== react-calendar 스타일 커스터마이징 ================== */
+/* 캘린더 전체 컨테이너 */
+.react-calendar {
+    width: 100% !important;
+    border: none !important;
+}
+/* 제목 날자 스타일 */
+.react-calendar__navigation__label__labelText {
+    font-weight: 600 !important;
+}
+/* 선택된 날자  */
+.react-calendar__tile--active {
+    background: #c3ebfa !important;
+    color: black !important;
+}

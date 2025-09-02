@@ -1,5 +1,9 @@
-import CountChart from '@/components/CountChart';
 import UserCard from '@/components/UserCard';
+import CountChart from '@/components/CountChart';
+import AttendanceChart from '@/components/AttendanceChart';
+import FinanceChart from '@/components/FinanceChart'; //  FinanceChart 차트
+import EventCalendar from '@/components/EventCalendar'; //  EventCalendar 컴포넌트
+import Announcements from '@/components/Announcements'; // *************************** Announcements 컴포넌트
 
 const AdminPage = () => {
     // 모바일 너비 수직, 데스크탑 너비 수평 정렬
@@ -20,14 +24,23 @@ const AdminPage = () => {
                     <div className='w-full lg:w-1/3 h-[450px]'>
                         <CountChart />
                     </div>
-                    {/* Attendance 차트  */}
-                    <div className='w-full lg:w-2/3 h-[450px]'></div>
+                    {/*  Attendance 차트  */}
+                    <div className='w-full lg:w-2/3 h-[450px]'>
+                        <AttendanceChart />
+                    </div>
                 </div>
                 {/* ----- Bottom 차트 영역  ----- */}
-                <div className=''></div>
+                <div className='w-full h-[500px]'>
+                    <FinanceChart />
+                </div>
             </div>
             {/* ===================== Right ===================== */}
-            <div className='w-full lg:w-1/3'>Right</div>
+            <div className='w-full lg:w-1/3 flex flex-col gap-8'>
+                {/* -----  Event Calendar 컴포넌트 추가  ----- */}
+                <EventCalendar />
+                {/* ******************************************** Announcements 컴포넌트 추가  ----- */}
+                <Announcements />
+            </div>
         </div>
     );
 };
