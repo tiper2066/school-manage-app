@@ -24,3 +24,94 @@
     background: #c3ebfa !important;
     color: black !important;
 }
+/* ================== react-big-calendar 스타일 커스터마이징 ================== */
+/* 'tody, back, next' 버튼 숨기기 */
+.rbc-btn-group:first-child {
+    display: none !important;
+}
+/* 날자 제목 - 우측 배치 */
+.rbc-toolbar-label {
+    text-align: right !important;
+    padding: 0px 20px !important;
+}
+/* work week, day 버튼 폰트 크기 작게 */
+.rbc-btn-group:last-child {
+    font-size: 13px !important;
+}
+/*  work week, day 버튼 - 테두리 제거, 배경 색상 추가 */
+.rbc-btn-group:last-child button {
+    border: none !important;
+    background-color: #f1f0ff !important;
+    margin-left: 2px !important;
+}
+/* 활성화 버튼 - 그림자 제거, 배경색 변경 */
+.rbc-toolbar button.rbc-active {
+    background-color: #dbdafe !important;
+    box-shadow: none !important;
+}
+/* 전체 캘린더 테두리 색상 연하게  */
+.rbc-time-view {
+    border-color: #eee !important;
+}
+/* 헤더 (요일/날자 표시 영역) 제거  */
+.rbc-time-header {
+    display: none !important;
+}
+/* 숨겨진 헤더 영역에서 테두리도 제거 */
+.rbc-time-content {
+    border: none !important;
+}
+/* 캘린더 영역 전체 폰트 작게  */
+.rbc-time-gutter.rbc-time-column {
+    font-size: 12px !important;
+}
+/* 시간 표시 컬럼 패딩 넓게  */
+.rbc-time-gutter.rbc-time-column .rbc-timeslot-group {
+    padding: 0px 20px !important;
+}
+/* 모든 컬럼 배경색 변경  */
+.rbc-timeslot-group {
+    background-color: #f7fdff !important;
+}
+/* day 표시 영역 글자 크기 작게  */
+.rbc-day-slot {
+    font-size: 14px !important;
+}
+/* 이벤트 영역 스타일 설정  */
+.rbc-event {
+    border: none !important;
+    color: black !important;
+    padding: 10px !important;
+    margin: 10px !important;
+    width: 99% !important;
+}
+/*  이벤트 마다 컬럼 배경색 다르게 지정   */
+.rbc-event:nth-child(1) {
+    background-color: #e2f8ff !important;
+}
+.rbc-event:nth-child(2) {
+    background-color: #fefce8 !important;
+}
+.rbc-event:nth-child(3) {
+    background-color: #f2f1ff !important;
+}
+.rbc-event:nth-child(4) {
+    background-color: #fdf2fb !important;
+}
+.rbc-event:nth-child(5) {
+    background-color: #e2f8ff !important;
+}
+.rbc-event:nth-child(6) {
+    background-color: #fefce8 !important;
+}
+.rbc-event:nth-child(7) {
+    background-color: #f2f1ff !important;
+}
+.rbc-event:nth-child(8) {
+    background-color: #fdf2fb !important;
+}
+/* 이벤트 영역 - 시간 글자 색상 및 마진 설정   */
+.rbc-event-label {
+    color: gray !important;
+    margin-bottom: 5px;
+}

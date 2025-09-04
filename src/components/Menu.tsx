@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { role } from '@/lib/data'; // ********************************* role 데이터 받아오기
 
-// *********************************** 사이드 메뉴 및 기타 메뉴 데이터 추가
+//  사이드 메뉴 및 기타 메뉴 데이터 추가
 const menuItems = [
     {
         title: 'MENU',
@@ -128,7 +129,7 @@ const Menu = () => {
                         {menuItem.title}
                     </span>
                     {/* -------------------- 메뉴 항목 부분 -------------------- */}
-
+                    {/*
                     {menuItem.items.map((item, itemIndex) => (
                         <Link
                             href={item.href}
@@ -146,6 +147,30 @@ const Menu = () => {
                             </span>
                         </Link>
                     ))}
+                    */}
+                    {menuItem.items.map((item, itemIndex) => {
+                        // ******************************************** role 에 따른 메뉴 표시 로직
+                        // visible 속성에 role 값과 동일한 값이 있을 경우에만 메뉴 아이템을 표시함
+                        if (item.visible.includes(role)) {
+                            return (
+                                <Link
+                                    href={item.href}
+                                    key={item.label}
+                                    className='flex items-center justify-center lg:justify-start gap-4 text-gray-500 py-2 md:px-2 rounded-md hover:bg-lamaSkyLight'
+                                >
+                                    <Image
+                                        src={item.icon}
+                                        alt=''
+                                        width={20}
+                                        height={20}
+                                    />
+                                    <span className='hidden lg:block'>
+                                        {item.label}
+                                    </span>
+                                </Link>
+                            );
+                        }
+                    })}
                 </div>
             ))}
         </div>
