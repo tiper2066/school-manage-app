@@ -3,9 +3,10 @@ import Table from '@/components/Table';
 import TableSearch from '@/components/TableSearch';
 import Image from 'next/image'; //  추가
 import Link from 'next/link'; // 추가
-import { role, parentsData } from '@/lib/data'; // **************** parentsData 데이터 가져오기
+import { role, parentsData } from '@/lib/data'; //  parentsData 데이터 가져오기
+import FormModal from '@/components/FormModal';
 
-// ************************ 테이블의 row 테이터값에 대한 타입 선언
+//  테이블의 row 테이터값에 대한 타입 선언
 type Parent = {
     id: number;
     name: string;
@@ -15,7 +16,7 @@ type Parent = {
     address: string;
 };
 
-// ******************************************** 테이블 컬럼 설정
+//  테이블 컬럼 설정
 const columns = [
     {
         header: 'Info',
@@ -43,7 +44,7 @@ const columns = [
 ];
 
 const ParentListPage = () => {
-    //  *************************************** 테이블 Row UI 구현하기 (Parent 타입 적용 )
+    //   테이블 Row UI 구현하기 (Parent 타입 적용 )
     const renderRow = (item: Parent) => (
         <tr
             key={item.id}
@@ -52,35 +53,29 @@ const ParentListPage = () => {
             <td className='flex items-center gap-4 p-4'>
                 <div className='flex flex-col'>
                     <h3 className='font-semibold'>{item.name}</h3>
-                    {/* **************************************************** 내부 컬럼 데이터값 변경 */}
+                    {/*  내부 컬럼 데이터값 변경 */}
                     <p className='text-xs text-gray-500'>{item?.email}</p>
                 </div>
             </td>
-            {/* **************************************************** 내부 컬럼 데이터값 변경 */}
+            {/*  내부 컬럼 데이터값 변경 */}
             <td className='hidden md:table-cell'>{item.students.join(',')}</td>
             <td className='hidden lg:table-cell'>{item.phone}</td>
             <td className='hidden lg:table-cell'>{item.address}</td>
             <td>
                 <div className='flex items-center gap-2'>
-                    <Link href={`/list/teachers/${item.id}`}>
-                        <button className='w-7 h-7 flex items-center justify-center rounded-full bg-lamaSky'>
-                            <Image
-                                src='/edit.png'
-                                alt=''
-                                width={16}
-                                height={16}
-                            />
-                        </button>
-                    </Link>
                     {role === 'admin' && (
-                        <button className='w-7 h-7 flex items-center justify-center rounded-full bg-lamaPurple'>
-                            <Image
-                                src='/delete.png'
-                                alt=''
-                                width={16}
-                                height={16}
+                        <>
+                            <FormModal
+                                table='parent'
+                                type='update'
+                                data={item}
                             />
-                        </button>
+                            <FormModal
+                                table='parent'
+                                type='delete'
+                                id={item.id}
+                            />
+                        </>
                     )}
                 </div>
             </td>
@@ -91,7 +86,7 @@ const ParentListPage = () => {
         <div className='bg-white p-4 rounded-md flex-1 m-4 mt-0'>
             {/* TOP */}
             <div className='flex items-center justify-between'>
-                {/* **************************************************************** 페이지 타이틀 변경  */}
+                {/*  페이지 타이틀 변경  */}
                 <h1 className='hidden md:block text-lg font-semibold'>
                     All Parents
                 </h1>
@@ -116,16 +111,9 @@ const ParentListPage = () => {
                                 height={14}
                             />
                         </button>
-                        {/* ******************************* 관리자일 경우만 추가 버튼을 보여줌  */}
+                        {/*  관리자일 경우만 추가 버튼을 보여줌  */}
                         {role === 'admin' && (
-                            <button className='w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow'>
-                                <Image
-                                    src='/plus.png'
-                                    alt=''
-                                    width={14}
-                                    height={14}
-                                />
-                            </button>
+                            <FormModal table='parent' type='create' />
                         )}
                     </div>
                 </div>
@@ -134,7 +122,7 @@ const ParentListPage = () => {
             <Table
                 columns={columns}
                 renderRow={renderRow}
-                data={parentsData} // ********************** parentsData 데이터 전달하기
+                data={parentsData} //  parentsData 데이터 전달하기
             />
             {/* PAGINATION */}
             <Pagination />

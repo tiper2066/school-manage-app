@@ -4,6 +4,7 @@ import TableSearch from '@/components/TableSearch';
 import Image from 'next/image'; //  추가
 import Link from 'next/link'; // 추가
 import { role, resultsData } from '@/lib/data'; // **************** resultsData 데이터 가져오기
+import FormModal from '@/components/FormModal';
 
 // ************************ 테이블의 row 테이터값에 대한 타입 선언
 type Result = {
@@ -68,25 +69,19 @@ const ResultListPage = () => {
             <td className='hidden md:table-cell'>{item.date}</td>
             <td>
                 <div className='flex items-center gap-2'>
-                    <Link href={`/list/teachers/${item.id}`}>
-                        <button className='w-7 h-7 flex items-center justify-center rounded-full bg-lamaSky'>
-                            <Image
-                                src='/edit.png' // ************************ view 이미지 말고 수정 이미지로 변경
-                                alt=''
-                                width={16}
-                                height={16}
-                            />
-                        </button>
-                    </Link>
                     {role === 'admin' && (
-                        <button className='w-7 h-7 flex items-center justify-center rounded-full bg-lamaPurple'>
-                            <Image
-                                src='/delete.png'
-                                alt=''
-                                width={16}
-                                height={16}
+                        <>
+                            <FormModal
+                                table='result'
+                                type='update'
+                                data={item}
                             />
-                        </button>
+                            <FormModal
+                                table='result'
+                                type='delete'
+                                id={item.id}
+                            />
+                        </>
                     )}
                 </div>
             </td>
@@ -124,14 +119,7 @@ const ResultListPage = () => {
                         </button>
                         {/* ******************************* 관리자일 경우만 추가 버튼을 보여줌  */}
                         {role === 'admin' && (
-                            <button className='w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow'>
-                                <Image
-                                    src='/plus.png'
-                                    alt=''
-                                    width={14}
-                                    height={14}
-                                />
-                            </button>
+                            <FormModal table='result' type='create' />
                         )}
                     </div>
                 </div>

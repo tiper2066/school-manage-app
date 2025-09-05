@@ -1,11 +1,12 @@
 import Pagination from '@/components/Pagination';
 import Table from '@/components/Table';
 import TableSearch from '@/components/TableSearch';
-import Image from 'next/image'; // ******************** 추가
-import Link from 'next/link'; // ******************** 추가
-import { role, teachersData } from '@/lib/data'; // **************** 사용자 역할 데이터
+import Image from 'next/image'; //  추가
+import Link from 'next/link'; //  추가
+import { role, teachersData } from '@/lib/data'; //  사용자 역할 데이터
+import FormModal from '@/components/FormModal';
 
-// ************************ 테이블의 row 테이터값에 대한 타입 선언
+//  테이블의 row 테이터값에 대한 타입 선언
 type Teacher = {
     id: number;
     teacherId: string;
@@ -18,7 +19,7 @@ type Teacher = {
     address: string;
 };
 
-// ************************ 테이블 컬럼 설정 데이터
+//  테이블 컬럼 설정 데이터
 const columns = [
     {
         header: 'Info',
@@ -56,7 +57,7 @@ const columns = [
 ];
 
 const TeacherListPage = () => {
-    // ********************************* 테이블 Row UI 구현하기
+    //  테이블 Row UI 구현하기
     const renderRow = (item: Teacher) => (
         <tr
             key={item.id}
@@ -93,15 +94,7 @@ const TeacherListPage = () => {
                         </button>
                     </Link>
                     {role === 'admin' && (
-                        <button className='w-7 h-7 flex items-center justify-center rounded-full bg-lamaPurple'>
-                            <Image
-                                src='/delete.png'
-                                alt=''
-                                width={16}
-                                height={16}
-                            />
-                        </button>
-                        // <FormModal table='teacher' type='delete' id={item.id} />
+                        <FormModal table='teacher' type='delete' id={item.id} />
                     )}
                 </div>
             </td>
@@ -136,16 +129,9 @@ const TeacherListPage = () => {
                                 height={14}
                             />
                         </button>
-                        {/* ******************************* 관리자일 경우만 추가 버튼을 보여줌  */}
+                        {/*  관리자일 경우만 추가 버튼을 보여줌  */}
                         {role === 'admin' && (
-                            <button className='w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow'>
-                                <Image
-                                    src='/plus.png'
-                                    alt=''
-                                    width={14}
-                                    height={14}
-                                />
-                            </button>
+                            <FormModal table='teacher' type='create' />
                         )}
                     </div>
                 </div>

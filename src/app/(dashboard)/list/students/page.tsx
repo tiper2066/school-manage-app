@@ -4,6 +4,7 @@ import TableSearch from '@/components/TableSearch';
 import Image from 'next/image'; //  추가
 import Link from 'next/link'; // 추가
 import { role, studentsData } from '@/lib/data'; // **************** studentsData 데이터 가져오기
+import FormModal from '@/components/FormModal';
 
 // ************************ 테이블의 row 테이터값에 대한 타입 선언
 type Student = {
@@ -78,7 +79,7 @@ const StudentListPage = () => {
             <td className='hidden lg:table-cell'>{item.address}</td>
             <td>
                 <div className='flex items-center gap-2'>
-                    <Link href={`/list/teachers/${item.id}`}>
+                    <Link href={`/list/students/${item.id}`}>
                         <button className='w-7 h-7 flex items-center justify-center rounded-full bg-lamaSky'>
                             <Image
                                 src='/view.png'
@@ -89,15 +90,7 @@ const StudentListPage = () => {
                         </button>
                     </Link>
                     {role === 'admin' && (
-                        <button className='w-7 h-7 flex items-center justify-center rounded-full bg-lamaPurple'>
-                            <Image
-                                src='/delete.png'
-                                alt=''
-                                width={16}
-                                height={16}
-                            />
-                        </button>
-                        // <FormModal table='teacher' type='delete' id={item.id} />
+                        <FormModal table='student' type='delete' id={item.id} />
                     )}
                 </div>
             </td>
@@ -135,14 +128,7 @@ const StudentListPage = () => {
                         </button>
                         {/* ******************************* 관리자일 경우만 추가 버튼을 보여줌  */}
                         {role === 'admin' && (
-                            <button className='w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow'>
-                                <Image
-                                    src='/plus.png'
-                                    alt=''
-                                    width={14}
-                                    height={14}
-                                />
-                            </button>
+                            <FormModal table='student' type='create' />
                         )}
                     </div>
                 </div>
